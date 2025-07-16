@@ -1,0 +1,10 @@
+/* Import global variables */
+@import "./styles/variables.css";
+
+/* Global App Styles */
+.app {
+  min-height: 100vh;
+  font-family: var(--font-family);
+}
+
+/* Any app-specific overrides can go here */

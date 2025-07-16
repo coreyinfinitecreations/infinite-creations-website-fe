@@ -1,0 +1,267 @@
+.cookie-settings-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px);
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  animation: fadeIn 0.3s ease-out;
+}
+
+.cookie-settings-modal {
+  background: white;
+  border-radius: 12px;
+  max-width: 600px;
+  width: 100%;
+  max-height: 80vh;
+  overflow-y: auto;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+  animation: slideIn 0.3s ease-out;
+}
+
+.cookie-settings-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px 24px 16px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.cookie-settings-header h2 {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 600;
+  color: #1f2937;
+}
+
+.close-button {
+  background: none;
+  border: none;
+  padding: 8px;
+  cursor: pointer;
+  color: #6b7280;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+}
+
+.close-button:hover {
+  background: #f3f4f6;
+  color: #374151;
+}
+
+.cookie-settings-content {
+  padding: 24px;
+}
+
+.cookie-settings-description {
+  margin: 0 0 24px 0;
+  color: #6b7280;
+  line-height: 1.5;
+}
+
+.cookie-categories {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.cookie-category {
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 16px;
+  background: #f9fafb;
+}
+
+.cookie-category-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.cookie-category-header h3 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: #1f2937;
+}
+
+.cookie-toggle {
+  position: relative;
+}
+
+.cookie-toggle input[type="checkbox"] {
+  display: none;
+}
+
+.toggle-label {
+  display: inline-block;
+  width: 44px;
+  height: 24px;
+  background: #d1d5db;
+  border-radius: 12px;
+  position: relative;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.toggle-label.disabled {
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+.toggle-switch {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 20px;
+  height: 20px;
+  background: white;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.cookie-toggle input[type="checkbox"]:checked + .toggle-label {
+  background: linear-gradient(45deg, #ff4444, #ff6b35);
+}
+
+.cookie-toggle input[type="checkbox"]:checked + .toggle-label .toggle-switch {
+  transform: translateX(20px);
+}
+
+.cookie-category-description {
+  margin: 0;
+  font-size: 14px;
+  color: #6b7280;
+  line-height: 1.4;
+}
+
+.cookie-settings-actions {
+  display: flex;
+  gap: 12px;
+  padding: 16px 24px 24px;
+  border-top: 1px solid #e5e7eb;
+  justify-content: flex-end;
+}
+
+.cookie-settings-btn {
+  padding: 10px 20px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: none;
+  min-width: 100px;
+}
+
+.btn-reject {
+  background: #f3f4f6;
+  color: #6b7280;
+  border: 1px solid #d1d5db;
+}
+
+.btn-reject:hover {
+  background: #e5e7eb;
+  color: #374151;
+}
+
+.btn-save {
+  background: #374151;
+  color: white;
+}
+
+.btn-save:hover {
+  background: #1f2937;
+}
+
+.btn-accept {
+  background: linear-gradient(45deg, #ff4444, #ff6b35);
+  color: white;
+}
+
+.btn-accept:hover {
+  background: linear-gradient(45deg, #e63946, #ff5722);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(255, 68, 68, 0.3);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .cookie-settings-overlay {
+    padding: 16px;
+  }
+
+  .cookie-settings-modal {
+    max-height: 90vh;
+  }
+
+  .cookie-settings-header {
+    padding: 20px 20px 16px;
+  }
+
+  .cookie-settings-content {
+    padding: 20px;
+  }
+
+  .cookie-settings-actions {
+    flex-direction: column;
+    padding: 16px 20px 20px;
+  }
+
+  .cookie-settings-btn {
+    width: 100%;
+    order: 2;
+  }
+
+  .btn-accept {
+    order: 1;
+  }
+
+  .btn-reject {
+    order: 3;
+  }
+}
+
+@media (max-width: 480px) {
+  .cookie-settings-header h2 {
+    font-size: 20px;
+  }
+
+  .cookie-category {
+    padding: 12px;
+  }
+
+  .cookie-category-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+}
