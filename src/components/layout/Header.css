@@ -148,13 +148,16 @@
   padding: 0.5rem 1rem;
   border-radius: 6px;
   font-weight: 500;
-  cursor: pointer;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
   transition: all 0.3s ease;
 }
 
 .btn-secondary:hover {
   background-color: #f9fafb;
-  border-color: #9ca3af;
+  color: #ff4444;
+  border-color: #ff4444;
 }
 
 .btn-primary {
@@ -164,12 +167,15 @@
   padding: 0.5rem 1rem;
   border-radius: 6px;
   font-weight: 500;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
   cursor: pointer;
   transition: all 0.3s ease;
 }
 
 .btn-primary:hover {
-  background: #cc3333;
+  background-color: #e63333;
 }
 
 .btn-link {

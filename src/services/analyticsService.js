@@ -3,7 +3,26 @@ class AnalyticsService {
   constructor() {
     this.isEnabled = import.meta.env.VITE_ANALYTICS_ENABLED === "true";
     this.events = [];
+    this.initializeGTMConsent();
     this.initializeConsentListener();
+  }
+
+  // Initialize GTM with default consent mode
+  initializeGTMConsent() {
+    if (typeof gtag !== "undefined") {
+      // Set default consent to denied
+      gtag("consent", "default", {
+        analytics_storage: "denied",
+        ad_storage: "denied",
+        wait_for_update: 500,
+      });
+
+      // Check if user has already given consent
+      const consent = localStorage.getItem("cookieConsent");
+      if (consent === "accepted") {
+        this.enableAnalytics();
+      }
+    }
   }
 
   // Initialize consent listener
@@ -31,6 +50,13 @@ class AnalyticsService {
     if (typeof gtag !== "undefined") {
       gtag("consent", "update", {
         analytics_storage: "granted",
+        ad_storage: "granted",
+      });
+
+      // Re-configure GTM with consent
+      gtag("config", "G-RX9V0S4SW6", {
+        analytics_storage: "granted",
+        ad_storage: "granted",
       });
     }
   }
@@ -42,6 +68,7 @@ class AnalyticsService {
     if (typeof gtag !== "undefined") {
       gtag("consent", "update", {
         analytics_storage: "denied",
+        ad_storage: "denied",
       });
     }
   }
@@ -60,6 +87,15 @@ class AnalyticsService {
 
     this.events.push(event);
     this.sendEvent(event);
+
+    // Send to Google Analytics via GTM
+    if (typeof gtag !== "undefined") {
+      gtag("event", "page_view", {
+        page_title: document.title,
+        page_location: window.location.href,
+        page_path: page,
+      });
+    }
   }
 
   // Track user interactions
@@ -78,6 +114,15 @@ class AnalyticsService {
 
     this.events.push(event);
     this.sendEvent(event);
+
+    // Send to Google Analytics via GTM
+    if (typeof gtag !== "undefined") {
+      gtag("event", action, {
+        event_category: category,
+        event_label: label,
+        value: value,
+      });
+    }
   }
 
   // Track button clicks

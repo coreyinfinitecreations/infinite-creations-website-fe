@@ -35,6 +35,11 @@ const Header = () => {
               </Link>
             </li>
             <li className="nav-item">
+              <Link to="/portfolio" className="nav-link">
+                Our Work
+              </Link>
+            </li>
+            <li className="nav-item">
               <a href="#services" className="nav-link">
                 Our Services
               </a>
@@ -99,8 +104,6 @@ const Header = () => {
             <Link to="/coming-soon" className="btn-link">
               Client Login
             </Link>
-            <button className="btn-secondary">Join</button>
-            <button className="btn-primary">Start</button>
           </div>
 
           <button className="mobile-menu-toggle" onClick={toggleMenu}>

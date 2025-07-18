@@ -1,7 +1,17 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import "./AboutSection.css";
 
 const AboutSection = () => {
+  const navigate = useNavigate();
+
+  const handleLearnMore = () => {
+    navigate("/portfolio");
+  };
+
+  const handleSignUp = () => {
+    navigate("/get-started");
+  };
   return (
     <section className="about-section">
       <div className="about-container">
@@ -36,8 +46,10 @@ const AboutSection = () => {
             </div>
 
             <div className="about-actions">
-              <button className="btn-learn-more">Learn More</button>
-              <button className="btn-sign-up">
+              <button className="btn-learn-more" onClick={handleLearnMore}>
+                Learn More
+              </button>
+              <button className="btn-sign-up" onClick={handleSignUp}>
                 Sign Up
                 <svg
                   className="arrow-icon"

@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Layout, CookieConsent } from "./components";
-import { Home, ComingSoon } from "./pages";
+import { Home, ComingSoon, ViewOurWork, GetStarted } from "./pages";
 import "./App.css";
 
 function App() {
@@ -10,6 +10,8 @@ function App() {
       <Layout>
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/portfolio" element={<ViewOurWork />} />
+          <Route path="/get-started" element={<GetStarted />} />
           <Route path="/coming-soon" element={<ComingSoon />} />
           <Route path="*" element={<ComingSoon />} />
         </Routes>

@@ -1,15 +1,16 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import "./Hero.css";
 
 const Hero = () => {
+  const navigate = useNavigate();
+
   const handleGetStarted = () => {
-    // Scroll to contact section or open contact form
-    document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
+    navigate("/get-started");
   };
 
   const handleViewPortfolio = () => {
-    // Navigate to portfolio section or page
-    document.getElementById("services")?.scrollIntoView({ behavior: "smooth" });
+    navigate("/portfolio");
   };
 
   return (
