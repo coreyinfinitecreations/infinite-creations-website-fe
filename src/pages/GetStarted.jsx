@@ -15,12 +15,36 @@ const GetStarted = () => {
 
   const [errors, setErrors] = useState({});
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  // Format phone number as user types
+  const formatPhoneNumber = (value) => {
+    // Remove all non-digits
+    const phoneNumber = value.replace(/\D/g, '');
+    
+    // Format based on length
+    if (phoneNumber.length < 4) {
+      return phoneNumber;
+    } else if (phoneNumber.length < 7) {
+      return `(${phoneNumber.slice(0, 3)}) ${phoneNumber.slice(3)}`;
+    } else {
+      return `(${phoneNumber.slice(0, 3)}) ${phoneNumber.slice(3, 6)}-${phoneNumber.slice(6, 10)}`;
+    }
+  };
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
+    
+    let formattedValue = value;
+    
+    // Format phone number
+    if (name === 'phone') {
+      formattedValue = formatPhoneNumber(value);
+    }
+    
     setFormData((prev) => ({
       ...prev,
-      [name]: value,
+      [name]: formattedValue,
     }));
 
     // Clear error when user starts typing
@@ -49,14 +73,64 @@ const GetStarted = () => {
     return newErrors;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const newErrors = validateForm();
 
     if (Object.keys(newErrors).length === 0) {
-      // Here you would typically send the form data to your backend
-      console.log("Form submitted:", formData);
-      setIsSubmitted(true);
+      setIsSubmitting(true);
+
+      try {
+        // Send form data to Web3Forms (which forwards to hello@infinitecreations.io)
+        const response = await fetch("https://api.web3forms.com/submit", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            access_key: "3b4ec01f-9bf9-472f-80a8-960275a2553b",
+            name: formData.name,
+            email: formData.email,
+            company: formData.company,
+            phone: formData.phone,
+            project_type: formData.projectType,
+            budget: formData.budget,
+            timeline: formData.timeline,
+            message: formData.message,
+            subject: `New Project Inquiry from ${formData.name}`,
+            from_name: formData.name,
+            to_email: "hello@infinitecreations.io",
+          }),
+        });
+
+        const data = await response.json();
+
+        if (response.ok && data.success) {
+          console.log("Form submitted successfully:", formData);
+          setIsSubmitted(true);
+
+          // Reset form
+          setFormData({
+            name: "",
+            email: "",
+            company: "",
+            phone: "",
+            projectType: "",
+            budget: "",
+            timeline: "",
+            message: "",
+          });
+        } else {
+          throw new Error(data.message || "Failed to submit form");
+        }
+      } catch (error) {
+        console.error("Form submission error:", error);
+        alert(
+          "There was an error submitting your form. Please try again or contact us directly at hello@infinitecreations.io"
+        );
+      } finally {
+        setIsSubmitting(false);
+      }
     } else {
       setErrors(newErrors);
     }
@@ -223,7 +297,9 @@ const GetStarted = () => {
                     name="phone"
                     value={formData.phone}
                     onChange={handleInputChange}
-                    placeholder="Enter your phone number"
+                    placeholder="(555) 123-4567"
+                    maxLength="14"
+                    autoComplete="tel"
                   />
                 </div>
               </div>
@@ -304,17 +380,23 @@ const GetStarted = () => {
               </div>
 
               <div className="form-actions">
-                <button type="submit" className="btn-submit">
-                  Send My Request
-                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                    <path
-                      d="M18 2L9 11L4 6"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                  </svg>
+                <button
+                  type="submit"
+                  className="btn-submit"
+                  disabled={isSubmitting}
+                >
+                  {isSubmitting ? "Sending..." : "Send My Request"}
+                  {!isSubmitting && (
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                      <path
+                        d="M18 2L9 11L4 6"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                    </svg>
+                  )}
                 </button>
               </div>
             </form>
