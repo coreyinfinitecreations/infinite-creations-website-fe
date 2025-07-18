@@ -102,17 +102,12 @@ const Footer = () => {
               <h4>Stay Connected</h4>
               <div className="social-links">
                 <SocialIcon
-                  url="https://facebook.com/infinitecreations"
+                  url="https://facebook.com/infinitecreationsagency"
                   bgColor="#000000"
                   style={{ height: 40, width: 40 }}
                 />
                 <SocialIcon
                   url="https://instagram.com/infinitecreations"
-                  bgColor="#000000"
-                  style={{ height: 40, width: 40 }}
-                />
-                <SocialIcon
-                  url="https://x.com/infinitecreations"
                   bgColor="#000000"
                   style={{ height: 40, width: 40 }}
                 />

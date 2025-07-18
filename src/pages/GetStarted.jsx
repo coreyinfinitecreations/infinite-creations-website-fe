@@ -20,28 +20,31 @@ const GetStarted = () => {
   // Format phone number as user types
   const formatPhoneNumber = (value) => {
     // Remove all non-digits
-    const phoneNumber = value.replace(/\D/g, '');
-    
+    const phoneNumber = value.replace(/\D/g, "");
+
     // Format based on length
     if (phoneNumber.length < 4) {
       return phoneNumber;
     } else if (phoneNumber.length < 7) {
       return `(${phoneNumber.slice(0, 3)}) ${phoneNumber.slice(3)}`;
     } else {
-      return `(${phoneNumber.slice(0, 3)}) ${phoneNumber.slice(3, 6)}-${phoneNumber.slice(6, 10)}`;
+      return `(${phoneNumber.slice(0, 3)}) ${phoneNumber.slice(
+        3,
+        6
+      )}-${phoneNumber.slice(6, 10)}`;
     }
   };
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    
+
     let formattedValue = value;
-    
+
     // Format phone number
-    if (name === 'phone') {
+    if (name === "phone") {
       formattedValue = formatPhoneNumber(value);
     }
-    
+
     setFormData((prev) => ({
       ...prev,
       [name]: formattedValue,
@@ -174,18 +177,28 @@ const GetStarted = () => {
         <div className="success-message">
           <div className="container">
             <div className="success-content">
-              <div className="success-icon">✅</div>
-              <h1>Thank You!</h1>
-              <p>
-                Your request has been submitted successfully. We'll get back to
-                you within 24 hours.
+              <div className="success-animation">
+                <div className="checkmark-circle">
+                  <i className="fas fa-check checkmark-icon"></i>
+                </div>
+              </div>
+
+              <h1 className="success-title">Request Submitted Successfully!</h1>
+
+              <p className="success-description">
+                Thank you for your interest in working with Infinite Creations.
+                We've received your project details and will review them
+                carefully.
               </p>
-              <button
-                className="btn-primary"
-                onClick={() => setIsSubmitted(false)}
-              >
-                Submit Another Request
-              </button>
+
+              <div className="success-actions">
+                <button
+                  className="btn-secondary"
+                  onClick={() => (window.location.href = "/")}
+                >
+                  Back to Home
+                </button>
+              </div>
             </div>
           </div>
         </div>
