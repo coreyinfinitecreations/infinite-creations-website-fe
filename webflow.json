@@ -1,0 +1,17 @@
+{
+  "library": {
+    "name": "Infinite Creations",
+    "components": [
+      "./src/**/*.webflow.@(js|jsx|mjs|ts|tsx)"
+    ],
+    "description": "Website for Infinite Creations",
+    "id": "infinite-creations"
+  },
+  "telemetry": {
+    "global": {
+      "allowTelemetry": true,
+      "lastPrompted": 1769026323593,
+      "version": "1.11.0"
+    }
+  }
+}
