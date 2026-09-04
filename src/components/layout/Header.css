@@ -306,3 +306,14 @@
     height: 60px;
   }
 }
+.header-account { display: flex; align-items: center; gap: 6px; }
+.header-account-name { max-width: 125px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: .8rem; color: var(--text-secondary); }
+.header-signout { border: 1px solid var(--border-color); border-radius: 6px; padding: 8px 10px; background: white; color: var(--primary-color); font: inherit; font-size: .8rem; cursor: pointer; white-space: nowrap; }
+.header-signout:hover { border-color: var(--primary-color); }
+.header-signout:disabled { opacity: .6; cursor: wait; }
+.header-auth-error { margin: 0; padding: 10px 24px; color: #a02020; background: #fff1f1; }
+.header .nav-menu { gap: .5rem; }
+.header .nav-link { padding: .5rem; }
+.header .btn-link { white-space: nowrap; }
+@media (min-width: 769px) and (max-width: 1100px) { .header-account-name { display: none; } .header-container { padding: 0 1rem; } .navigation { gap: .5rem; } .header .nav-link { font-size: .85rem; } }
+@media (max-width: 768px) { .header-account { flex-wrap: wrap; justify-content: center; border-top: 1px solid var(--border-color); padding-top: 12px; } .header-account-name { width: 100%; max-width: none; text-align: center; } }

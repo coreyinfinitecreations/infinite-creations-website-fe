@@ -1,0 +1,10 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "rewrites": [
+    {
+      "source": "/api/client",
+      "destination": "https://manage.infinitecreations.io/api/client"
+    },
+    { "source": "/((?!api/).*)", "destination": "/index.html" }
+  ]
+}
