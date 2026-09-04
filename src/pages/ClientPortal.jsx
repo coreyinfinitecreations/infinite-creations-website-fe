@@ -24,6 +24,38 @@ const money = (amount, currency) =>
   );
 const status = (value) => value.replaceAll('_', ' ');
 
+function PaymentMethodIcon({ method }) {
+  const brand = (method.brand || method.label || '').toLowerCase();
+  const isBank = method.type === 'us_bank_account';
+
+  if (brand.includes('visa'))
+    return (
+      <span className="portal-payment-logo portal-payment-logo-visa" aria-label="Visa">
+        VISA
+      </span>
+    );
+  if (brand.includes('mastercard'))
+    return (
+      <span
+        className="portal-payment-logo portal-payment-logo-mastercard"
+        aria-label="Mastercard"
+      >
+        <i />
+        <i />
+      </span>
+    );
+  return (
+    <span
+      className={`portal-payment-logo ${
+        isBank ? 'portal-payment-logo-bank' : 'portal-payment-logo-card'
+      }`}
+      aria-label={isBank ? 'Bank account' : 'Credit card'}
+    >
+      {isBank ? 'BANK' : <i />}
+    </span>
+  );
+}
+
 export default function ClientPortal() {
   const location = useLocation();
   const navigate = useNavigate();
@@ -57,6 +89,7 @@ export default function ClientPortal() {
     return () => window.removeEventListener('client-signed-out', clear);
   }, []);
   const [billing, setBilling] = useState(null);
+  const [billingLoading, setBillingLoading] = useState(false);
   const [method, setMethod] = useState('');
   const [consent, setConsent] = useState(false);
   const [ticket, setTicket] = useState(null);
@@ -69,12 +102,16 @@ export default function ClientPortal() {
     if (generation === authGeneration.current) setWorkspace(data);
   }
   async function loadBilling() {
-    setBilling(null);
-    const value = await api('billing');
-    setBilling(value);
-    setMethod(value.defaultMethod);
-    setConsent(false);
-    await refresh();
+    setBillingLoading(true);
+    try {
+      const value = await api('billing');
+      setBilling(value);
+      setMethod(value.defaultMethod);
+      setConsent(false);
+      await refresh();
+    } finally {
+      setBillingLoading(false);
+    }
   }
   async function run(fn) {
     setBusy(true);
@@ -488,7 +525,7 @@ export default function ClientPortal() {
           <p>Cards and bank accounts are securely stored by Stripe.</p>
           {!billing && (
             <p role="status">
-              {busy
+              {billingLoading
                 ? 'Loading payment details…'
                 : 'Payment details could not be loaded. Please refresh to try again.'}
             </p>
@@ -536,16 +573,30 @@ export default function ClientPortal() {
           </section>
           {
             <div className="portal-billing-grid">
-              <section className="portal-card">
+              <section
+                className={`portal-card portal-payment-card${
+                  billingLoading ? ' is-loading' : ''
+                }`}
+                aria-busy={billingLoading}
+              >
                 <h3>Saved payment methods</h3>
+                {billingLoading && (
+                  <div className="portal-component-loading" role="status">
+                    <span className="portal-spinner" aria-hidden="true" />
+                    <span>Loading saved payment methods…</span>
+                  </div>
+                )}
                 {(billing?.methods || []).map((pm) => (
                   <div className="portal-method" key={pm.id}>
-                    <span>
-                      {pm.label}
-                      {pm.id === billing?.defaultMethod && (
-                        <small>Default payment method</small>
-                      )}
-                    </span>
+                    <div className="portal-method-details">
+                      <PaymentMethodIcon method={pm} />
+                      <span>
+                        {pm.label}
+                        {pm.id === billing?.defaultMethod && (
+                          <small>Default payment method</small>
+                        )}
+                      </span>
+                    </div>
                     {pm.id !== billing?.defaultMethod && (
                       <button
                         disabled={busy || billing.autopay !== 'disabled'}
@@ -573,7 +624,7 @@ export default function ClientPortal() {
                     </button>
                   </div>
                 ))}
-                {!billing?.methods.length && (
+                {!billingLoading && !billing?.methods.length && (
                   <p>
                     {billing?.available
                       ? 'No payment methods saved yet.'

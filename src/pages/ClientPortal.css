@@ -305,6 +305,97 @@
   border-top: 1px solid var(--border-color);
   padding: 22px 0;
 }
+.portal-payment-card {
+  position: relative;
+  min-height: 300px;
+}
+.portal-method-details {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  min-width: 0;
+}
+.portal-payment-logo {
+  width: 46px;
+  height: 30px;
+  flex: 0 0 46px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border: 1px solid #dedfe4;
+  border-radius: 6px;
+  background: #fff;
+  color: #202126;
+  font-size: 0.62rem;
+  font-style: normal;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+}
+.portal-payment-logo-visa {
+  color: #1434cb;
+  font-size: 0.78rem;
+  font-style: italic;
+  letter-spacing: -0.04em;
+}
+.portal-payment-logo-mastercard {
+  position: relative;
+  border-color: #ececef;
+}
+.portal-payment-logo-mastercard i {
+  position: absolute;
+  width: 17px;
+  height: 17px;
+  border-radius: 50%;
+  background: #eb001b;
+}
+.portal-payment-logo-mastercard i:first-child {
+  left: 9px;
+}
+.portal-payment-logo-mastercard i:last-child {
+  right: 9px;
+  background: #f79e1b;
+  opacity: 0.9;
+}
+.portal-payment-logo-card i {
+  width: 25px;
+  height: 17px;
+  border: 2px solid #686972;
+  border-radius: 3px;
+  background: linear-gradient(#686972 0 4px, transparent 4px);
+}
+.portal-component-loading {
+  position: absolute;
+  z-index: 1;
+  inset: 68px 0 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 13px;
+  border-radius: 0 0 18px 18px;
+  background: rgba(255, 255, 255, 0.92);
+  color: #62636b;
+  font-size: 0.9rem;
+}
+.portal-spinner {
+  width: 28px;
+  height: 28px;
+  border: 3px solid #ffe0dc;
+  border-top-color: var(--primary-color);
+  border-radius: 50%;
+  animation: portal-spin 0.75s linear infinite;
+}
+@keyframes portal-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .portal-spinner {
+    animation-duration: 1.5s;
+  }
+}
 .client-portal .portal-consent {
   display: flex;
   flex-direction: row;
