@@ -24,6 +24,30 @@ const money = (amount, currency) =>
   );
 const status = (value) => value.replaceAll('_', ' ');
 
+// Greeting helpers: "Welcome" for first-timers, "Welcome back[, name]" for
+// returning clients, persisted in localStorage per browser.
+const readGreeting = () => {
+  try {
+    if (localStorage.getItem('ic-client-known') !== '1') return 'Welcome';
+    const firstName = localStorage.getItem('ic-client-first-name');
+    return firstName ? `Welcome back, ${firstName}` : 'Welcome back';
+  } catch {
+    return 'Welcome back';
+  }
+};
+
+const rememberClient = (data) => {
+  try {
+    localStorage.setItem('ic-client-known', '1');
+    const raw = data?.clients?.[0]?.name || data?.user?.name || '';
+    const first = raw.trim().split(/\s+/)[0];
+    if (first) localStorage.setItem('ic-client-first-name', first);
+    else localStorage.removeItem('ic-client-first-name');
+  } catch {
+    // storage unavailable (private mode, etc.) — greeting just won't personalize
+  }
+};
+
 function PaymentMethodIcon({ method }) {
   const brand = (method.brand || method.label || '').toLowerCase();
   const isBank = method.type === 'us_bank_account';
@@ -100,6 +124,7 @@ export default function ClientPortal() {
     const generation = authGeneration.current;
     const data = await api('workspace');
     if (generation === authGeneration.current) setWorkspace(data);
+    return data;
   }
   async function loadBilling() {
     setBillingLoading(true);
@@ -158,6 +183,7 @@ export default function ClientPortal() {
       } else {
         const session = await api('session');
         const data = session ? await api('workspace') : null;
+        if (data) rememberClient(data);
         if (alive && generation === authGeneration.current) setWorkspace(data);
       }
     };
@@ -186,7 +212,8 @@ export default function ClientPortal() {
       form.reset();
       setMessage('Your password has been updated.');
       if (recovery) {
-        await refresh();
+        const data = await refresh();
+        rememberClient(data);
         navigate('/client');
       }
     });
@@ -274,7 +301,7 @@ export default function ClientPortal() {
               ? 'Set your password.'
               : forgot
               ? 'Let’s get you back in.'
-              : 'Welcome back.'}
+              : readGreeting()}
           </h2>
           {notices}
           {recovery ? (
@@ -295,7 +322,8 @@ export default function ClientPortal() {
                       email: f.get('email'),
                       password: f.get('password'),
                     });
-                    await refresh();
+                    const data = await refresh();
+                    rememberClient(data);
                     navigate('/client');
                   }
                 });
