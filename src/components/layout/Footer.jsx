@@ -60,40 +60,33 @@ const Footer = () => {
               <h4>Quick Links</h4>
               <ul>
                 <li>
-                  <Link to="/coming-soon">About Us</Link>
+                  <Link to="/about">About Us</Link>
                 </li>
                 <li>
-                  <Link to="/coming-soon">Contact Us</Link>
+                  <Link to="/portfolio">Our Work</Link>
                 </li>
                 <li>
-                  <a href="#services">Our Services</a>
+                  <a href="/#services">Our Services</a>
                 </li>
                 <li>
-                  <Link to="/coming-soon">Blog Posts</Link>
-                </li>
-                <li>
-                  <Link to="/coming-soon">FAQs</Link>
+                  <Link to="/get-started">Get Started</Link>
                 </li>
               </ul>
             </div>
 
             <div className="footer-column">
-              <h4>Connect With Us</h4>
+              <h4>Get in Touch</h4>
               <ul>
                 <li>
-                  <Link to="/coming-soon">Support</Link>
+                  <Link to="/get-started">Contact Us</Link>
                 </li>
                 <li>
-                  <Link to="/coming-soon">Community</Link>
+                  <a href="mailto:hello@infinitecreations.io">
+                    hello@infinitecreations.io
+                  </a>
                 </li>
                 <li>
-                  <Link to="/coming-soon">Events</Link>
-                </li>
-                <li>
-                  <Link to="/coming-soon">Resources</Link>
-                </li>
-                <li>
-                  <Link to="/coming-soon">Testimonials</Link>
+                  <Link to="/client/login">Client Login</Link>
                 </li>
               </ul>
             </div>
@@ -128,11 +121,11 @@ const Footer = () => {
 
         <div className="footer-bottom">
           <p className="footer-copyright">
-            © 2025 Infinite Creations. All rights reserved.
+            © 2026 Infinite Creations. All rights reserved.
           </p>
           <div className="footer-legal">
-            <Link to="/coming-soon">Privacy Policy</Link>
-            <Link to="/coming-soon">Terms of Service</Link>
+            <Link to="/privacy">Privacy Policy</Link>
+            <Link to="/terms">Terms of Service</Link>
             <Link
               onClick={handleCookieSettingsClick}
               className="cookie-settings-link"

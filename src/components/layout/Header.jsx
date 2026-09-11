@@ -78,7 +78,7 @@ export default function Header() {
             className={`nav-menu ${open ? 'nav-menu-open' : ''}`}
           >
             <li className="nav-item">
-              <Link to="/coming-soon" className="nav-link">
+              <Link to="/about" className="nav-link">
                 About Us
               </Link>
             </li>
@@ -93,7 +93,7 @@ export default function Header() {
               </a>
             </li>
             <li className="nav-item">
-              <Link to="/coming-soon" className="nav-link">
+              <Link to="/get-started" className="nav-link">
                 Contact Us
               </Link>
             </li>
