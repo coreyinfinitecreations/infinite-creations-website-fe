@@ -97,9 +97,9 @@ export default function Header() {
               </Link>
             </li>
             <li className="nav-item">
-              <a href="/#services" className="nav-link">
-                Our Services
-              </a>
+              <Link to="/services" className="nav-link">
+                Services
+              </Link>
             </li>
             <li className="nav-item">
               <Link to="/get-started" className="nav-link">

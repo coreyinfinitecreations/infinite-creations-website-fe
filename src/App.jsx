@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Layout, CookieConsent } from "./components";
-import { Home, ComingSoon, ViewOurWork, GetStarted, About, Privacy, Terms } from "./pages";
+import { Home, ComingSoon, ViewOurWork, GetStarted, About, Services, Privacy, Terms } from "./pages";
 import "./App.css";
 import ClientPortal from "./pages/ClientPortal";
 
@@ -15,6 +15,7 @@ function App() {
           <Route path="/client/reset-password" element={<ClientPortal />} />
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
+          <Route path="/services" element={<Services />} />
           <Route path="/portfolio" element={<ViewOurWork />} />
           <Route path="/get-started" element={<GetStarted />} />
           <Route path="/privacy" element={<Privacy />} />
