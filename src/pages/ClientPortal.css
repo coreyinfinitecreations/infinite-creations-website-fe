@@ -365,16 +365,12 @@
   background: linear-gradient(#686972 0 4px, transparent 4px);
 }
 .portal-component-loading {
-  position: absolute;
-  z-index: 1;
-  inset: 68px 0 0;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 13px;
-  border-radius: 0 0 18px 18px;
-  background: rgba(255, 255, 255, 0.92);
+  min-height: 210px;
   color: #62636b;
   font-size: 0.9rem;
 }

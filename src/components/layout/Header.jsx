@@ -5,6 +5,7 @@ import './Header.css';
 
 export default function Header() {
   const [open, setOpen] = useState(false);
+  const [accountOpen, setAccountOpen] = useState(false);
   const [session, setSession] = useState(null);
   const [loaded, setLoaded] = useState(false);
   const [busy, setBusy] = useState(false);
@@ -46,7 +47,15 @@ export default function Header() {
   }, []);
   useEffect(() => {
     setOpen(false);
+    setAccountOpen(false);
   }, [location.pathname, location.search]);
+  const initials = (session?.name || session?.email || 'IC')
+    .trim()
+    .split(/\s+/)
+    .map((part) => part[0])
+    .join('')
+    .slice(0, 2)
+    .toUpperCase();
   async function logout() {
     setBusy(true);
     setError('');
@@ -101,24 +110,67 @@ export default function Header() {
               {!loaded ? (
                 <span className="btn-link">Checking account…</span>
               ) : session ? (
-                <>
-                  <span className="header-account-name">
-                    Hi, {session.name}
-                  </span>
-                  <Link to="/client" className="btn-link">
-                    My projects
-                  </Link>
-                  <Link to="/client?tab=account" className="btn-link">
-                    My account
-                  </Link>
+                <div
+                  className={`header-account-menu${
+                    accountOpen ? ' is-open' : ''
+                  }`}
+                  onMouseEnter={() => setAccountOpen(true)}
+                  onMouseLeave={() => setAccountOpen(false)}
+                  onBlur={(event) => {
+                    if (!event.currentTarget.contains(event.relatedTarget))
+                      setAccountOpen(false);
+                  }}
+                  onKeyDown={(event) => {
+                    if (event.key === 'Escape') {
+                      setAccountOpen(false);
+                      event.currentTarget.querySelector('button')?.focus();
+                    }
+                  }}
+                >
                   <button
-                    className="header-signout"
-                    onClick={logout}
-                    disabled={busy}
+                    type="button"
+                    className="header-account-trigger"
+                    aria-haspopup="menu"
+                    aria-expanded={accountOpen}
+                    onClick={() => setAccountOpen((value) => !value)}
+                    onFocus={() => setAccountOpen(true)}
                   >
-                    {busy ? 'Signing out…' : 'Sign out'}
+                    <span className="header-account-avatar" aria-hidden="true">
+                      {initials}
+                    </span>
+                    <span className="header-account-copy">
+                      <strong>{session.name || 'Client account'}</strong>
+                      <small>{session.email}</small>
+                    </span>
+                    <span className="header-account-chevron" aria-hidden="true" />
                   </button>
-                </>
+                  <div className="header-account-dropdown" role="menu">
+                    <Link to="/client?tab=account#security" role="menuitem">
+                      Account Settings
+                    </Link>
+                    <Link to="/client?tab=account#profile" role="menuitem">
+                      Profile
+                    </Link>
+                    <Link to="/client?tab=invoices" role="menuitem">
+                      Invoices
+                    </Link>
+                    <Link to="/client?tab=payments" role="menuitem">
+                      Payments
+                    </Link>
+                    <Link to="/client?tab=support" role="menuitem">
+                      Support Tickets
+                    </Link>
+                    <button
+                      type="button"
+                      className="header-account-signout"
+                      role="menuitem"
+                      onClick={logout}
+                      disabled={busy}
+                    >
+                      {busy ? 'Signing out…' : 'Sign out'}
+                    </button>
+                  </div>
+                </div>
               ) : (
                 <Link to="/client/login" className="btn-link">
                   Client Login

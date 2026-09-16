@@ -23,6 +23,11 @@ const money = (amount, currency) =>
         }).resolvedOptions().maximumFractionDigits
   );
 const status = (value) => value.replaceAll('_', ' ');
+const portalTabs = ['projects', 'invoices', 'payments', 'support', 'account'];
+const requestedTab = (search) => {
+  const value = new URLSearchParams(search).get('tab');
+  return portalTabs.includes(value) ? value : 'projects';
+};
 
 // Greeting helpers: "Welcome" for first-timers, "Welcome back[, name]" for
 // returning clients, persisted in localStorage per browser.
@@ -80,6 +85,12 @@ function PaymentMethodIcon({ method }) {
   );
 }
 
+const paymentMethodLabel = (method) => {
+  if (method.type !== 'card') return method.label;
+  const lastFour = method.last4 || method.label?.match(/\d{4}$/)?.[0];
+  return lastFour ? `•••• ${lastFour}` : 'Saved card';
+};
+
 export default function ClientPortal() {
   const location = useLocation();
   const navigate = useNavigate();
@@ -92,15 +103,7 @@ export default function ClientPortal() {
   const [message, setMessage] = useState('');
   const [forgot, setForgot] = useState(false);
   const [ready, setReady] = useState(false);
-  const [tab, setTab] = useState(
-    new URLSearchParams(location.search).get('tab') === 'account'
-      ? 'account'
-      : 'projects'
-  );
-  useEffect(() => {
-    if (new URLSearchParams(location.search).get('tab') === 'account')
-      setTab('account');
-  }, [location.search]);
+  const [tab, setTab] = useState(() => requestedTab(location.search));
   useEffect(() => {
     const clear = () => {
       authGeneration.current++;
@@ -119,6 +122,39 @@ export default function ClientPortal() {
   const [ticket, setTicket] = useState(null);
   const [replies, setReplies] = useState([]);
   const recovering = useRef(null);
+  const workspaceIdentity =
+    workspace?.user?.id || workspace?.user?.email || '';
+
+  useEffect(() => {
+    const next = requestedTab(location.search);
+    setTab(next);
+    if (next !== 'payments' || !workspaceIdentity) return;
+    let active = true;
+    setBillingLoading(true);
+    setError('');
+    setMessage('');
+    api('billing')
+      .then((value) => {
+        if (!active) return;
+        setBilling(value);
+        setMethod(value.defaultMethod);
+        setConsent(false);
+        return api('workspace');
+      })
+      .then((value) => {
+        if (active && value) setWorkspace(value);
+      })
+      .catch((reason) => {
+        if (active) setError(reason.message);
+      })
+      .finally(() => {
+        if (active) setBillingLoading(false);
+      });
+    return () => {
+      active = false;
+      setBillingLoading(false);
+    };
+  }, [location.search, workspaceIdentity]);
 
   async function refresh() {
     const generation = authGeneration.current;
@@ -551,11 +587,9 @@ export default function ClientPortal() {
             </button>
           </div>
           <p>Cards and bank accounts are securely stored by Stripe.</p>
-          {!billing && (
-            <p role="status">
-              {billingLoading
-                ? 'Loading payment details…'
-                : 'Payment details could not be loaded. Please refresh to try again.'}
+          {!billing && !billingLoading && (
+            <p role="alert">
+              Payment details could not be loaded. Please refresh to try again.
             </p>
           )}
           {billing && !billing.available && (
@@ -608,68 +642,71 @@ export default function ClientPortal() {
                 aria-busy={billingLoading}
               >
                 <h3>Saved payment methods</h3>
-                {billingLoading && (
+                {billingLoading ? (
                   <div className="portal-component-loading" role="status">
                     <span className="portal-spinner" aria-hidden="true" />
                     <span>Loading saved payment methods…</span>
                   </div>
-                )}
-                {(billing?.methods || []).map((pm) => (
-                  <div className="portal-method" key={pm.id}>
-                    <div className="portal-method-details">
-                      <PaymentMethodIcon method={pm} />
-                      <span>
-                        {pm.label}
-                        {pm.id === billing?.defaultMethod && (
-                          <small>Default payment method</small>
+                ) : (
+                  <>
+                    {(billing?.methods || []).map((pm) => (
+                      <div className="portal-method" key={pm.id}>
+                        <div className="portal-method-details">
+                          <PaymentMethodIcon method={pm} />
+                          <span>
+                            {paymentMethodLabel(pm)}
+                            {pm.id === billing?.defaultMethod && (
+                              <small>Default payment method</small>
+                            )}
+                          </span>
+                        </div>
+                        {pm.id !== billing?.defaultMethod && (
+                          <button
+                            disabled={busy || billing.autopay !== 'disabled'}
+                            onClick={() =>
+                              run(async () => {
+                                await api('defaultMethod', { method_id: pm.id });
+                                await loadBilling();
+                                setMessage('Default payment method updated.');
+                              })
+                            }
+                          >
+                            Make default
+                          </button>
                         )}
-                      </span>
-                    </div>
-                    {pm.id !== billing?.defaultMethod && (
-                      <button
-                        disabled={busy || billing.autopay !== 'disabled'}
-                        onClick={() =>
-                          run(async () => {
-                            await api('defaultMethod', { method_id: pm.id });
-                            await loadBilling();
-                            setMessage('Default payment method updated.');
-                          })
-                        }
-                      >
-                        Make default
-                      </button>
+                        <button
+                          disabled={busy}
+                          onClick={() =>
+                            run(async () => {
+                              await api('removeMethod', { method_id: pm.id });
+                              await loadBilling();
+                            })
+                          }
+                        >
+                          Remove
+                        </button>
+                      </div>
+                    ))}
+                    {!billing?.methods.length && (
+                      <p>
+                        {billing?.available
+                          ? 'No payment methods saved yet.'
+                          : 'Saved cards and ACH accounts will appear here once billing is available.'}
+                      </p>
                     )}
                     <button
-                      disabled={busy}
+                      className="portal-primary"
+                      disabled={busy || !billing?.available}
                       onClick={() =>
                         run(async () => {
-                          await api('removeMethod', { method_id: pm.id });
-                          await loadBilling();
+                          window.location.assign(await api('addMethod'));
                         })
                       }
                     >
-                      Remove
+                      Add credit card or ACH account
                     </button>
-                  </div>
-                ))}
-                {!billingLoading && !billing?.methods.length && (
-                  <p>
-                    {billing?.available
-                      ? 'No payment methods saved yet.'
-                      : 'Saved cards and ACH accounts will appear here once billing is available.'}
-                  </p>
+                  </>
                 )}
-                <button
-                  className="portal-primary"
-                  disabled={busy || !billing?.available}
-                  onClick={() =>
-                    run(async () => {
-                      window.location.assign(await api('addMethod'));
-                    })
-                  }
-                >
-                  Add credit card or ACH account
-                </button>
               </section>
               <section className="portal-card">
                 <h3>Automatic payments</h3>
@@ -896,7 +933,7 @@ export default function ClientPortal() {
         <section className="portal-card portal-account">
           <h2>Your account</h2>
           <p>{workspace.user.email}</p>
-          <h3>Profile and business information</h3>
+          <h3 id="profile">Profile and business information</h3>
           <form
             key={workspace.clients[0]?.updated_at || workspace.clients[0]?.name}
             onSubmit={(e) => {
@@ -964,7 +1001,7 @@ export default function ClientPortal() {
               Save profile
             </button>
           </form>
-          <h3>Change password</h3>
+          <h3 id="security">Change password</h3>
           <p>Use at least 12 characters.</p>
           {passwordForm}
         </section>
