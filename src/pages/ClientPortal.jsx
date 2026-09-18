@@ -23,6 +23,7 @@ const money = (amount, currency) =>
         }).resolvedOptions().maximumFractionDigits
   );
 const status = (value) => value.replaceAll('_', ' ');
+const firstName = (value) => value?.trim().split(/\s+/)[0] || '';
 const portalTabs = ['projects', 'invoices', 'payments', 'support', 'account'];
 const requestedTab = (search) => {
   const value = new URLSearchParams(search).get('tab');
@@ -103,11 +104,13 @@ export default function ClientPortal() {
   const [message, setMessage] = useState('');
   const [forgot, setForgot] = useState(false);
   const [ready, setReady] = useState(false);
+  const [recoveryUser, setRecoveryUser] = useState(null);
   const [tab, setTab] = useState(() => requestedTab(location.search));
   useEffect(() => {
     const clear = () => {
       authGeneration.current++;
       setWorkspace(null);
+      setRecoveryUser(null);
       setBilling(null);
       setReplies([]);
       setTicket(null);
@@ -215,7 +218,10 @@ export default function ClientPortal() {
           throw new Error(
             'Open your invitation or password-reset link to continue.'
           );
-        if (alive) setReady(true);
+        if (alive) {
+          setRecoveryUser(session);
+          setReady(true);
+        }
       } else {
         const session = await api('session');
         const data = session ? await api('workspace') : null;
@@ -300,6 +306,7 @@ export default function ClientPortal() {
       )}
     </>
   );
+  const recoveryFirstName = firstName(recoveryUser?.name);
 
   if (loading)
     return (
@@ -334,11 +341,19 @@ export default function ClientPortal() {
           <span className="portal-eyebrow">YOUR CLIENT SPACE</span>
           <h2>
             {recovery
-              ? 'Set your password.'
+              ? recoveryFirstName
+                ? `Welcome, ${recoveryFirstName}.`
+                : 'Set your password.'
               : forgot
               ? 'Let’s get you back in.'
               : readGreeting()}
           </h2>
+          {recovery && (
+            <p>
+              Set your account password to access your Infinite Creations
+              client portal.
+            </p>
+          )}
           {notices}
           {recovery ? (
             passwordForm
