@@ -38,14 +38,16 @@
 }
 
 .services-plans .container,
-.services-projects .container {
+.services-projects .container,
+.services-process .container {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 20px;
 }
 
 .services-plans .section-title,
-.services-projects .section-title {
+.services-projects .section-title,
+.services-process .section-title {
   text-align: center;
   font-size: 2.5rem;
   font-weight: 700;
@@ -54,7 +56,8 @@
 }
 
 .services-plans .section-subtitle,
-.services-projects .section-subtitle {
+.services-projects .section-subtitle,
+.services-process .section-subtitle {
   text-align: center;
   font-size: 1.15rem;
   line-height: 1.6;
@@ -65,7 +68,7 @@
 
 .plans-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 30px;
   align-items: stretch;
 }
@@ -115,17 +118,25 @@
 }
 
 .plan-price {
-  font-size: 2.5rem;
-  font-weight: 700;
   color: #1a1a1a;
-  margin: 0 0 4px;
+  margin: 10px 0 18px;
+}
+
+.plan-price-value {
+  display: block;
+  font-size: clamp(2rem, 3vw, 2.5rem);
+  font-weight: 700;
+  line-height: 1.08;
+  letter-spacing: -0.02em;
 }
 
 .plan-unit {
+  display: block;
   font-size: 1rem;
   font-weight: 500;
   color: #999;
-  margin-left: 4px;
+  line-height: 1.4;
+  margin-top: 10px;
 }
 
 .plan-tagline {
@@ -200,6 +211,42 @@
 .services-projects {
   padding: 80px 0;
   background: #fafafa;
+}
+
+.ongoing-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 30px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.ongoing-card {
+  background: #fff;
+  border: 1px solid #e9ecef;
+  border-radius: 12px;
+  display: grid;
+  gap: 30px;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  padding: 36px 32px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+}
+
+.ongoing-card .plan-features {
+  margin-bottom: 0;
+}
+
+.ongoing-price {
+  color: #1a1a1a;
+  font-size: 1.75rem;
+  font-weight: 700;
+  line-height: 1.15;
+  margin: 10px 0 16px;
+}
+
+.services-process {
+  padding: 80px 0;
+  background: #fff;
 }
 
 .projects-grid {
@@ -295,7 +342,13 @@
   }
 
   .plans-grid,
-  .projects-grid {
+  .projects-grid,
+  .ongoing-grid {
     grid-template-columns: 1fr;
+  }
+
+  .ongoing-card {
+    grid-template-columns: 1fr;
+    gap: 8px;
   }
 }

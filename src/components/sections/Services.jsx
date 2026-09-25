@@ -7,40 +7,40 @@ import "./Services.css";
 const Services = () => {
   const navigate = useNavigate();
 
-  const plans = [
+  const services = [
     {
-      title: "Launch — $750/mo",
-      description: "Your online presence, handled: social posts, Google Business Profile, and reviews.",
+      title: "Establish Your Digital Foundation",
+      description: "Launch or improve a professional website and connect the essentials without overbuilding.",
     },
     {
-      title: "Growth — $1,500/mo",
-      description: "Everything in Launch plus campaigns, content, and a monthly report you can actually read.",
+      title: "Connect & Automate Your Business",
+      description: "Reduce manual work and make your existing systems operate as one connected flow.",
     },
     {
-      title: "Scale — $2,500/mo",
-      description: "Everything in Growth plus paid ads, loyalty campaigns, and a lead-generation funnel.",
+      title: "Build a Custom Solution",
+      description: "Create the portal, product, or operational tool your business cannot buy off the shelf.",
     },
   ];
 
   return (
-    <section className="services">
-      <h3>Digital Partner Plans</h3>
+    <section id="services" className="services">
+      <h3>Where Should We Start?</h3>
       <p className="services-teaser">
-        One partner for your website and your marketing. Pick a monthly plan —
-        we'll handle the rest.
+        Start with the smallest solution that can create a meaningful result.
+        We can support it, connect it, and improve it as your business grows.
       </p>
       <div className="service-grid">
-        {plans.map((plan, index) => (
+        {services.map((service, index) => (
           <ServiceCard
             key={index}
-            title={plan.title}
-            description={plan.description}
+            title={service.title}
+            description={service.description}
           />
         ))}
       </div>
       <div className="services-cta-row">
         <Button onClick={() => navigate("/services")}>
-          See Plans & Pricing
+          Explore Services & Pricing
         </Button>
       </div>
     </section>

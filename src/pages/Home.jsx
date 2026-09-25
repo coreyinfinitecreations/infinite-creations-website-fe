@@ -1,11 +1,5 @@
 import React from "react";
-import {
-  Hero,
-  Services,
-  InteractiveDemo,
-  TechStack,
-  AboutSection,
-} from "../components";
+import { Hero, Services, AboutSection } from "../components";
 import { analyticsService } from "../services";
 
 const Home = () => {
@@ -19,8 +13,6 @@ const Home = () => {
       <Hero />
       <AboutSection />
       <Services />
-      <TechStack />
-      <InteractiveDemo />
     </>
   );
 };

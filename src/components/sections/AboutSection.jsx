@@ -17,40 +17,40 @@ const AboutSection = () => {
       <div className="about-container">
         <div className="about-content">
           <div className="about-text">
-            <span className="about-badge">Innovate</span>
+            <span className="about-badge">Technology that earns its keep</span>
             <h2 className="about-title">
-              Empowering Your Online Presence with Excellence
+              Connect the work. Automate the repeatable. Build what is missing.
             </h2>
             <p className="about-description">
-              At Infinite Creations, we specialize in crafting stunning websites
-              that resonate with your audience. Our services extend to SEO and
-              digital marketing, ensuring your message reaches the right people.
+              Infinite Creations helps growing businesses replace disconnected
+              tools and manual handoffs with practical technology. We start with
+              the operational problem, then design the right combination of
+              automation, integrations, software, and digital foundations.
             </p>
 
             <div className="about-features">
               <div className="feature-item">
-                <div className="feature-icon">✨</div>
-                <span>Custom web design tailored to your unique vision.</span>
+                <div className="feature-icon">⚙️</div>
+                <span>Reduce repetitive work and costly process gaps.</span>
               </div>
               <div className="feature-item">
                 <div className="feature-icon">📈</div>
-                <span>Boost your visibility with our expert SEO services.</span>
+                <span>Give your team cleaner data and faster decisions.</span>
               </div>
               <div className="feature-item">
                 <div className="feature-icon">🎯</div>
                 <span>
-                  Engage your audience through effective digital marketing
-                  strategies.
+                  Create better experiences from first click through delivery.
                 </span>
               </div>
             </div>
 
             <div className="about-actions">
               <button className="btn-learn-more" onClick={handleLearnMore}>
-                Learn More
+                See Our Work
               </button>
               <button className="btn-sign-up" onClick={handleSignUp}>
-                Sign Up
+                Start a Conversation
                 <svg
                   className="arrow-icon"
                   width="16"
@@ -74,7 +74,7 @@ const AboutSection = () => {
             <div className="image-container">
               <img
                 src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"
-                alt="Person working on laptop in modern office"
+                alt="Team collaborating around connected business systems"
                 className="about-img"
               />
             </div>

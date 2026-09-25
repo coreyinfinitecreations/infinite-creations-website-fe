@@ -33,8 +33,8 @@ const Footer = () => {
               />
             </div>
             <p className="newsletter-description">
-              Subscribe to our newsletter for the latest updates on features and
-              releases.
+              Practical ideas for using automation, connected systems, and
+              digital tools to run a stronger business.
             </p>
             <form className="newsletter-form" onSubmit={handleSubmit}>
               <input

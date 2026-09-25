@@ -22,21 +22,21 @@ const Hero = () => {
       <div className="hero-content">
         <div className="hero-text">
           <h1 className="hero-title">
-            Transform Your Digital Vision into Reality
+            Make your business work smarter
           </h1>
           <p className="hero-subtitle">
-            We create stunning websites and innovative software solutions that
-            elevate your business. From concept to launch, we're your trusted
-            partner in digital excellence.
+            We build AI automations, connected systems, and custom software
+            that remove busywork, improve customer experiences, and create
+            room to grow.
           </p>
         </div>
 
         <div className="hero-actions">
           <button className="btn-cta-primary" onClick={handleGetStarted}>
-            Get Started Today
+            Talk Through Your Goals
           </button>
           <button className="btn-cta-secondary" onClick={handleViewPortfolio}>
-            View Our Work
+            See What We Build
           </button>
         </div>
       </div>

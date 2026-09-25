@@ -2,212 +2,117 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import "./Services.css";
 
-const plans = [
+const paths = [
   {
-    name: "Launch",
-    price: "$750",
-    unit: "/mo",
-    tagline: "For businesses getting their online presence right.",
-    features: [
-      "Social media posts 3x per week",
-      "Google Business Profile management",
-      "Review monitoring and responses",
-      "Monthly performance snapshot",
-    ],
-    highlighted: false,
+    name: "Establish Your Digital Foundation",
+    price: "From $1,500",
+    unit: "or $175/mo for 12 months",
+    tagline: "Launch a professional customer experience without paying for technology you do not need.",
+    features: ["Focused 3–5 page website", "AI-assisted build with professional UI/UX refinement", "Foundational SEO, analytics, and lead capture", "Mobile, accessibility, performance, and launch QA"],
   },
   {
-    name: "Growth",
-    price: "$1,500",
-    unit: "/mo",
-    badge: "Most Popular",
-    tagline: "Everything in Launch, plus campaigns and content that bring customers in.",
-    features: [
-      "Everything in Launch",
-      "One email or SMS campaign per month",
-      "One monthly content piece (blog post or promo)",
-      "Plain-English monthly report tying activity to traffic and leads",
-      "Quarterly strategy call",
-    ],
-    highlighted: true,
+    name: "Connect & Automate Your Business",
+    price: "From $2,500",
+    unit: "scoped around the workflow",
+    tagline: "Reduce repetitive work and make the tools you already use operate as one connected system.",
+    features: ["Workflow and process mapping", "AI-assisted intake, routing, and follow-up", "CRM, scheduling, billing, and operations connections", "Human review, measurement, and team handoff"],
   },
   {
-    name: "Scale",
-    price: "$2,500",
-    unit: "/mo",
-    tagline: "Everything in Growth, plus paid reach and priority support.",
-    features: [
-      "Everything in Growth",
-      "Paid ads management (ad spend billed separately)",
-      "Loyalty and promo campaigns",
-      "Lead-generation funnel",
-      "Priority support",
-      "Monthly strategy call",
-    ],
-    highlighted: false,
+    name: "Build a Custom Solution",
+    price: "Custom scope",
+    unit: "delivered in practical phases",
+    tagline: "Create the portal, internal tool, or digital product your business cannot buy off the shelf.",
+    features: ["Product strategy and experience design", "Web applications and customer portals", "Internal operations tools", "Iterative launch and ongoing improvement"],
   },
 ];
 
-const projects = [
+const ongoingServices = [
   {
-    name: "Custom Website",
-    price: "$3,000",
-    unit: "one-time",
-    tagline: "A new website, built right, in 3–4 weeks.",
-    features: [
-      "5-page mobile-first website",
-      "SEO basics built in",
-      "Google Business Profile setup",
-      "Lead-capture forms",
-    ],
+    name: "Digital Growth",
+    price: "From $750/mo",
+    tagline: "Focus digital activity on measurable journeys, not a fixed volume of posts.",
+    features: ["Conversion and customer-journey improvements", "Search, content, email, and campaign strategy", "Analytics and plain-English reporting", "Ongoing testing and optimization"],
   },
   {
-    name: "Website as a Service",
-    price: "$0 down",
-    unit: "$400/mo for 12 months",
-    tagline: "The same website, with an easier yes for small businesses.",
-    features: [
-      "Everything in the custom website",
-      "Hosting included",
-      "Ongoing updates and care",
-    ],
-  },
-  {
-    name: "Care Plan",
-    price: "$295",
-    unit: "/mo",
-    tagline: "Keep an existing site healthy and up to date.",
-    features: [
-      "Hosting, updates, and backups",
-      "Small content changes",
-    ],
+    name: "Care & Optimization",
+    price: "From $295/mo",
+    tagline: "Keep your digital systems healthy and make them better over time.",
+    features: ["Hosting, updates, backups, and monitoring", "Small content and configuration changes", "Performance and reliability improvements", "A responsive partner when needs change"],
   },
 ];
 
 const Services = () => {
   const navigate = useNavigate();
-
   return (
     <div className="services-page">
-      {/* Hero */}
       <section className="services-hero">
-        <div className="container">
-          <div className="hero-content">
-            <h1 className="hero-title">
-              One partner for your website and your marketing
-            </h1>
-            <p className="hero-description">
-              A project gets you a website. A partner gets you customers. Pick
-              a monthly plan and we'll handle your site, your marketing, and
-              the follow-through — every month.
-            </p>
-            <button
-              className="btn-cta-primary"
-              onClick={() => navigate("/get-started")}
-            >
-              Start with a Conversation
-            </button>
-          </div>
-        </div>
+        <div className="container"><div className="hero-content">
+          <h1 className="hero-title">Technology built around how your business works</h1>
+          <p className="hero-description">We find the friction slowing your team down, then build the automation, connected systems, software, and digital foundation that moves the business forward.</p>
+          <button className="btn-cta-primary" onClick={() => navigate("/get-started")}>Start with a Conversation</button>
+        </div></div>
       </section>
 
-      {/* Monthly plans */}
       <section className="services-plans">
         <div className="container">
-          <h2 className="section-title">Digital Partner Plans</h2>
-          <p className="section-subtitle">
-            One monthly payment, everything handled. Pick the level that fits
-            where your business is right now.
-          </p>
+          <h2 className="section-title">Where Should We Start?</h2>
+          <p className="section-subtitle">Choose the path closest to where your business is today. We will recommend the smallest solution that can produce a meaningful result.</p>
           <div className="plans-grid">
-            {plans.map((plan, index) => (
-              <div
-                key={index}
-                className={`plan-card ${plan.highlighted ? "plan-card-highlighted" : ""}`}
-              >
-                {plan.badge && (
-                  <span className="plan-badge">{plan.badge}</span>
-                )}
-                <h3 className="plan-name">{plan.name}</h3>
+            {paths.map((path) => (
+              <div key={path.name} className="plan-card">
+                <h3 className="plan-name">{path.name}</h3>
                 <p className="plan-price">
-                  {plan.price}
-                  <span className="plan-unit">{plan.unit}</span>
+                  <span className="plan-price-value">{path.price}</span>
+                  <span className="plan-unit">{path.unit}</span>
                 </p>
-                <p className="plan-tagline">{plan.tagline}</p>
-                <ul className="plan-features">
-                  {plan.features.map((feature, i) => (
-                    <li key={i}>{feature}</li>
-                  ))}
-                </ul>
-                <button
-                  className={
-                    plan.highlighted
-                      ? "btn-cta-primary"
-                      : "btn-plan-secondary"
-                  }
-                  onClick={() => navigate("/get-started")}
-                >
-                  Get Started
-                </button>
+                <p className="plan-tagline">{path.tagline}</p>
+                <ul className="plan-features">{path.features.map((feature) => <li key={feature}>{feature}</li>)}</ul>
+                <button className="btn-plan-secondary" onClick={() => navigate("/get-started")}>Start This Conversation</button>
               </div>
             ))}
           </div>
-          <div className="plans-terms">
-            <p>
-              <strong>No long-term contracts.</strong> 3-month minimum to start,
-              then month-to-month. Cancel anytime after with 30 days notice. No
-              setup fees when bundled with a website project.
-            </p>
-          </div>
+          <div className="plans-terms"><p><strong>Pricing is a starting point.</strong> We scope around the problem, the systems involved, and the value of solving it. You will receive a clear recommendation before work begins.</p></div>
         </div>
       </section>
 
-      {/* Website projects */}
       <section className="services-projects">
         <div className="container">
-          <h2 className="section-title">Website Projects</h2>
-          <p className="section-subtitle">
-            Need a website first? Start here — then roll into a partner plan and
-            keep the momentum going.
-          </p>
-          <div className="projects-grid">
-            {projects.map((project, index) => (
-              <div key={index} className="project-card">
-                <h3 className="project-name">{project.name}</h3>
-                <p className="project-price">
-                  {project.price}
-                  <span className="project-unit">{project.unit}</span>
-                </p>
-                <p className="project-tagline">{project.tagline}</p>
-                <ul className="project-features">
-                  {project.features.map((feature, i) => (
-                    <li key={i}>{feature}</li>
-                  ))}
-                </ul>
+          <h2 className="section-title">Keep Improving After Launch</h2>
+          <p className="section-subtitle">Growth and care support every path. Add ongoing help when the business needs consistent attention, measurement, and improvement.</p>
+          <div className="ongoing-grid">
+            {ongoingServices.map((service) => (
+              <div key={service.name} className="ongoing-card">
+                <div>
+                  <h3 className="project-name">{service.name}</h3>
+                  <p className="ongoing-price">{service.price}</p>
+                  <p className="project-tagline">{service.tagline}</p>
+                </div>
+                <ul className="plan-features">{service.features.map((feature) => <li key={feature}>{feature}</li>)}</ul>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="services-cta">
+      <section className="services-process">
         <div className="container">
-          <div className="cta-content">
-            <h2 className="cta-title">Let's talk about your business</h2>
-            <p className="cta-description">
-              Tell us where you are and where you want to go — we'll recommend
-              the plan that fits. No pressure, no jargon.
-            </p>
-            <button
-              className="btn-cta-primary"
-              onClick={() => navigate("/get-started")}
-            >
-              Get Started Today
-            </button>
+          <h2 className="section-title">A Practical Path from Problem to Progress</h2>
+          <p className="section-subtitle">Clear decisions, useful releases, and technology your team can confidently own.</p>
+          <div className="projects-grid">
+            {[
+              ["01 — Discover", "Map the workflow, users, systems, constraints, and result that matters."],
+              ["02 — Build", "Deliver the highest-value version first, connect it to the real business, and test it with users."],
+              ["03 — Improve", "Measure performance, train the team, and iterate as the business changes."],
+            ].map(([name, tagline]) => <div key={name} className="project-card"><h3 className="project-name">{name}</h3><p className="project-tagline">{tagline}</p></div>)}
           </div>
         </div>
       </section>
+
+      <section className="services-cta"><div className="container"><div className="cta-content">
+        <h2 className="cta-title">Not sure which path fits?</h2>
+        <p className="cta-description">Start with a conversation. We will recommend the smallest solution that can produce a meaningful result—without forcing a tool or oversized project.</p>
+        <button className="btn-cta-primary" onClick={() => navigate("/get-started")}>Find the Right Starting Point</button>
+      </div></div></section>
     </div>
   );
 };

@@ -142,32 +142,21 @@ const GetStarted = () => {
   const services = [
     {
       icon: "🌐",
-      title: "Web Development",
-      description: "Custom websites built with modern technologies",
-      features: [
-        "Responsive Design",
-        "CMS Integration",
-        "E-commerce",
-        "Web Apps",
-      ],
+      title: "Establish Your Foundation",
+      description: "Launch or improve a professional website and connect the essentials",
+      features: ["Website Launch", "Foundational SEO", "Analytics", "Lead Capture"],
     },
     {
-      icon: "🎨",
-      title: "Web Design",
-      description: "Beautiful, user-friendly designs that convert",
-      features: ["UI/UX Design", "Branding", "Wireframing", "Prototyping"],
+      icon: "🔗",
+      title: "Connect & Automate",
+      description: "Reduce manual work and make your existing systems work together",
+      features: ["Workflow Mapping", "AI Automation", "Integrations", "Dashboards"],
     },
     {
-      icon: "📱",
-      title: "Mobile Development",
-      description: "Native and cross-platform mobile applications",
-      features: ["iOS Apps", "Android Apps", "React Native", "Flutter"],
-    },
-    {
-      icon: "📈",
-      title: "Digital Marketing",
-      description: "Drive traffic and increase conversions",
-      features: ["SEO", "PPC Advertising", "Social Media", "Analytics"],
+      icon: "🧩",
+      title: "Build a Custom Solution",
+      description: "Create the product, portal, or operational tool your business needs",
+      features: ["Product Strategy", "Web Apps", "Customer Portals", "Internal Tools"],
     },
   ];
 
@@ -212,10 +201,10 @@ const GetStarted = () => {
       <section className="get-started-hero">
         <div className="container">
           <div className="hero-content">
-            <h1 className="hero-title">Get Started Today</h1>
+            <h1 className="hero-title">Tell Us Where Work Gets Stuck</h1>
             <p className="hero-description">
-              Ready to bring your digital vision to life? Let's discuss your
-              project and create something amazing together.
+              Share the process, system, customer experience, or growth goal
+              you want to improve. We will help you define a practical next step.
             </p>
           </div>
         </div>
@@ -224,7 +213,7 @@ const GetStarted = () => {
       {/* Services Overview */}
       <section className="services-overview">
         <div className="container">
-          <h2 className="section-title">Our Services</h2>
+          <h2 className="section-title">What Would You Like to Improve?</h2>
           <div className="services-grid">
             {services.map((service, index) => (
               <div key={index} className="service-card">
@@ -247,10 +236,10 @@ const GetStarted = () => {
         <div className="container">
           <div className="form-container">
             <div className="form-header">
-              <h2 className="form-title">Tell Us About Your Project</h2>
+              <h2 className="form-title">Start the Conversation</h2>
               <p className="form-description">
-                Fill out the form below and we'll get back to you with a
-                detailed proposal.
+                A few useful details will help us understand the opportunity.
+                We will follow up to learn more before recommending a solution.
               </p>
             </div>
 
@@ -319,7 +308,7 @@ const GetStarted = () => {
 
               <div className="form-row">
                 <div className="form-group">
-                  <label htmlFor="projectType">Project Type *</label>
+                  <label htmlFor="projectType">Primary Need *</label>
                   <select
                     id="projectType"
                     name="projectType"
@@ -327,14 +316,14 @@ const GetStarted = () => {
                     onChange={handleInputChange}
                     className={errors.projectType ? "error" : ""}
                   >
-                    <option value="">Select a service</option>
-                    <option value="web-development">Web Development</option>
-                    <option value="web-design">Web Design</option>
-                    <option value="mobile-development">
-                      Mobile Development
-                    </option>
-                    <option value="digital-marketing">Digital Marketing</option>
-                    <option value="other">Other</option>
+                    <option value="">Select a primary need</option>
+                    <option value="ai-automation">AI Automation</option>
+                    <option value="systems-integrations">Business Systems & Integrations</option>
+                    <option value="custom-software">Custom Software</option>
+                    <option value="digital-growth">Digital Growth</option>
+                    <option value="website-foundations">Websites & Digital Foundations</option>
+                    <option value="care-optimization">Care & Optimization</option>
+                    <option value="not-sure">Not Sure Yet</option>
                   </select>
                   {errors.projectType && (
                     <span className="error-message">{errors.projectType}</span>
@@ -377,14 +366,14 @@ const GetStarted = () => {
               </div>
 
               <div className="form-group">
-                <label htmlFor="message">Project Description *</label>
+                <label htmlFor="message">What would you like to change? *</label>
                 <textarea
                   id="message"
                   name="message"
                   value={formData.message}
                   onChange={handleInputChange}
                   className={errors.message ? "error" : ""}
-                  placeholder="Tell us about your project, goals, and any specific requirements..."
+                  placeholder="What happens today, where does it break down, who is affected, and what would a better result look like?"
                   rows="6"
                 />
                 {errors.message && (
@@ -420,27 +409,27 @@ const GetStarted = () => {
       {/* Why Choose Us */}
       <section className="why-choose-us">
         <div className="container">
-          <h2 className="section-title">Why Choose Infinite Creations?</h2>
+          <h2 className="section-title">What You Can Expect</h2>
           <div className="reasons-grid">
             <div className="reason-item">
               <div className="reason-icon">⚡</div>
-              <h3>Fast Delivery</h3>
-              <p>We deliver projects on time without compromising quality.</p>
+              <h3>A Clear First Move</h3>
+              <p>We help narrow a broad challenge into a useful, achievable starting point.</p>
             </div>
             <div className="reason-item">
               <div className="reason-icon">🎯</div>
-              <h3>Tailored Solutions</h3>
-              <p>Every project is customized to meet your specific needs.</p>
+              <h3>Business-First Thinking</h3>
+              <p>The workflow and outcome lead; the technology supports them.</p>
             </div>
             <div className="reason-item">
               <div className="reason-icon">🏆</div>
-              <h3>Expert Team</h3>
-              <p>Our skilled professionals bring years of experience.</p>
+              <h3>Visible Progress</h3>
+              <p>You will see useful releases, clear decisions, and documented next steps.</p>
             </div>
             <div className="reason-item">
               <div className="reason-icon">💬</div>
-              <h3>24/7 Support</h3>
-              <p>We're always here to help you succeed.</p>
+              <h3>Ongoing Partnership</h3>
+              <p>We can stay involved to care for, measure, and improve what we build.</p>
             </div>
           </div>
         </div>

@@ -8,27 +8,27 @@ const About = () => {
   const values = [
     {
       icon: "✨",
-      title: "Craft Over Templates",
+      title: "Outcomes Before Tools",
       description:
-        "Every project is designed and built around your goals — never a cookie-cutter theme with your logo swapped in.",
+        "We begin with the operational or customer problem, then choose technology that fits the job.",
     },
     {
       icon: "🤝",
-      title: "Partner, Not Vendor",
+      title: "Partner, Not a Handoff",
       description:
-        "You get direct communication, honest timelines, and a team that treats your business like its own.",
+        "You get direct communication, honest tradeoffs, and a team that stays close from discovery through improvement.",
     },
     {
       icon: "⚡",
-      title: "Modern by Default",
+      title: "Connected by Design",
       description:
-        "We build with current tools — React, modern APIs, cloud infrastructure — so your site stays fast and maintainable.",
+        "We consider the people, data, and systems around every solution so it works in the real business.",
     },
     {
       icon: "📈",
-      title: "Built to Convert",
+      title: "Useful, Measurable Progress",
       description:
-        "Design is only half the job. Every page is structured to turn visitors into customers.",
+        "We ship practical improvements, document what we build, and measure what changes.",
     },
   ];
 
@@ -40,8 +40,8 @@ const About = () => {
           <div className="hero-content">
             <h1 className="hero-title">About Infinite Creations</h1>
             <p className="hero-description">
-              We're a digital solutions studio helping businesses turn ideas
-              into websites, apps, and marketing that actually perform.
+              We are a technology partner for businesses ready to simplify
+              operations, connect their systems, and build what comes next.
             </p>
           </div>
         </div>
@@ -54,19 +54,20 @@ const About = () => {
             <div className="story-text">
               <span className="about-badge">Our Story</span>
               <h2 className="section-heading">
-                Digital excellence, without the agency runaround
+                Practical technology, built with the business in mind
               </h2>
               <p>
-                Infinite Creations started with a simple frustration: too many
-                businesses were overpaying for underwhelming websites. We
-                built the studio we wished existed — one that pairs thoughtful
-                design with solid engineering, and actually picks up the phone.
+                Infinite Creations started by helping businesses create a
+                stronger digital presence. That work exposed a bigger need:
+                teams were also losing time to disconnected tools, manual
+                processes, and software that did not fit how they operated.
               </p>
               <p>
-                Today we help companies of all sizes launch and grow online:
-                from marketing sites that convert, to custom software that
-                runs your operations, to digital marketing that brings
-                customers through the door.
+                Today we work across the business—from AI-enabled workflows and
+                system integrations to custom products, digital growth, and the
+                websites that support them. The goal is not more technology.
+                It is a business that works better because the right technology
+                is in place.
               </p>
             </div>
             <div className="story-image">
@@ -100,17 +101,17 @@ const About = () => {
       <section className="about-cta">
         <div className="container">
           <div className="cta-content">
-            <h2 className="cta-title">Have a project in mind?</h2>
+            <h2 className="cta-title">Have a process that should work better?</h2>
             <p className="cta-description">
-              Tell us about it — we'll respond with honest feedback and a clear
-              proposal. No pressure, no jargon.
+              Tell us where the friction is. We will respond with honest
+              feedback and a clear next step. No pressure, no jargon.
             </p>
             <div className="cta-actions">
               <button
                 className="btn-cta-primary"
                 onClick={() => navigate("/get-started")}
               >
-                Get Started Today
+                Start a Conversation
               </button>
               <button
                 className="btn-cta-secondary"

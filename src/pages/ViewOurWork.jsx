@@ -1,197 +1,73 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import "./ViewOurWork.css";
 
+const projects = [
+  {
+    title: "Gatherflow",
+    category: "Custom Product",
+    description: "A purpose-built digital product that demonstrates our ability to move from an idea to a working platform.",
+    image: "https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+    problem: "Turn a new product concept into a clear, usable experience supported by dependable application architecture.",
+    solution: "Product strategy, experience design, and full-stack software development delivered as one connected engagement.",
+    integrations: "Application data, authentication, and the supporting services needed to operate the product.",
+    outcome: "A real product foundation ready to be used, learned from, and improved—rather than a static concept or prototype.",
+  },
+  {
+    title: "Providence Medical Clinic",
+    category: "Digital Foundation",
+    description: "A modern healthcare website designed to make essential information and next steps easier to find.",
+    image: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+    problem: "Create a credible digital front door that organizes clinic information for patients across devices.",
+    solution: "A responsive website with structured service content, clear calls to action, and maintainable publishing tools.",
+    integrations: "Patient-access and appointment pathways connected to the clinic's broader digital experience.",
+    outcome: "A clearer, more professional foundation for helping patients understand services and choose a next step.",
+    url: "https://www.providenceclinic.org",
+  },
+];
+
 const ViewOurWork = () => {
-  const projects = [
-    {
-      id: 1,
-      title: "Providence Medical Clinic",
-      category: "Web Development",
-      description:
-        "Professional medical clinic website with modern design, patient portal integration, and comprehensive healthcare services information.",
-      image:
-        "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-      technologies: ["React", "Node.js", "Strapi", "API Development"],
-      url: "https://www.providenceclinic.org",
-    },
-    {
-      id: 2,
-      title: "E-Commerce Platform",
-      category: "Web Development",
-      description:
-        "A modern, responsive e-commerce solution with advanced features and seamless user experience.",
-      image:
-        "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-      technologies: ["React", "Node.js", "MongoDB", "Stripe"],
-      url: "#",
-    },
-    {
-      id: 3,
-      title: "Corporate Website",
-      category: "Web Design",
-      description:
-        "Professional corporate website with clean design and optimized performance.",
-      image:
-        "https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-      technologies: ["WordPress", "PHP", "MySQL", "CSS3"],
-      url: "#",
-    },
-    {
-      id: 4,
-      title: "Healthcare App",
-      category: "Mobile Development",
-      description:
-        "Innovative healthcare mobile application with user-friendly interface and secure data handling.",
-      image:
-        "https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-      technologies: ["React Native", "Firebase", "Redux", "TypeScript"],
-      url: "#",
-    },
-    {
-      id: 5,
-      title: "Restaurant Management System",
-      category: "Software Development",
-      description:
-        "Comprehensive restaurant management system with inventory, orders, and analytics.",
-      image:
-        "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-      technologies: ["Vue.js", "Python", "PostgreSQL", "Docker"],
-      url: "#",
-    },
-    {
-      id: 6,
-      title: "Digital Marketing Campaign",
-      category: "Digital Marketing",
-      description:
-        "Successful digital marketing campaign that increased client engagement by 300%.",
-      image:
-        "https://images.unsplash.com/photo-1432888622747-4eb9a8efeb07?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-      technologies: ["Google Ads", "Facebook Ads", "SEO", "Analytics"],
-      url: "#",
-    },
-    {
-      id: 6,
-      title: "Portfolio Website",
-      category: "Web Design",
-      description:
-        "Creative portfolio website showcasing artistic work with stunning visual presentation.",
-      image:
-        "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-      technologies: ["HTML5", "CSS3", "JavaScript", "GSAP"],
-      url: "#",
-    },
-  ];
-
-  const categories = [
-    "All",
-    "Web Development",
-    "Web Design",
-    "Mobile Development",
-    "Software Development",
-    "Digital Marketing",
-  ];
-
-  const [selectedCategory, setSelectedCategory] = React.useState("All");
-
-  const filteredProjects =
-    selectedCategory === "All"
-      ? projects
-      : projects.filter((project) => project.category === selectedCategory);
-
+  const navigate = useNavigate();
   return (
     <div className="view-our-work">
-      {/* Hero Section */}
       <section className="work-hero">
         <div className="work-hero-content">
-          <h1 className="work-hero-title">Our Work</h1>
-          <p className="work-hero-description">
-            Discover our portfolio of successful projects and see how we've
-            helped businesses achieve their digital goals through innovative
-            solutions.
-          </p>
+          <h1 className="work-hero-title">Work Built Around Real Business Needs</h1>
+          <p className="work-hero-description">A closer look at the problem, the solution, the connected systems, and the result—not a gallery of generic deliverables.</p>
         </div>
       </section>
 
-      {/* Filter Section */}
-      <section className="work-filter">
-        <div className="container">
-          <div className="filter-buttons">
-            {categories.map((category) => (
-              <button
-                key={category}
-                className={`filter-btn ${
-                  selectedCategory === category ? "active" : ""
-                }`}
-                onClick={() => setSelectedCategory(category)}
-              >
-                {category}
-              </button>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Projects Grid */}
       <section className="projects-grid">
-        <div className="container">
-          <div className="projects-container">
-            {filteredProjects.map((project) => (
-              <div key={project.id} className="project-card">
-                <div className="project-image">
-                  <img src={project.image} alt={project.title} />
-                  <div className="project-overlay">
-                    <div className="project-actions">
-                      <button
-                        className="view-project-btn"
-                        onClick={() => {
-                          if (project.url && project.url !== "#") {
-                            window.open(
-                              project.url,
-                              "_blank",
-                              "noopener,noreferrer"
-                            );
-                          }
-                        }}
-                      >
-                        View Project
-                      </button>
-                    </div>
-                  </div>
-                </div>
-                <div className="project-content">
-                  <span className="project-category">{project.category}</span>
-                  <h3 className="project-title">{project.title}</h3>
-                  <p className="project-description">{project.description}</p>
-                  <div className="project-technologies">
-                    {project.technologies.map((tech) => (
-                      <span key={tech} className="tech-tag">
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
-                </div>
+        <div className="container"><div className="projects-container">
+          {projects.map((project) => (
+            <article key={project.title} className="project-card">
+              <div className="project-image"><img src={project.image} alt={`${project.title} project`} /></div>
+              <div className="project-content">
+                <span className="project-category">{project.category}</span>
+                <h2 className="project-title">{project.title}</h2>
+                <p className="project-description">{project.description}</p>
+                <dl className="case-study-details">
+                  <div><dt>Customer problem</dt><dd>{project.problem}</dd></div>
+                  <div><dt>Solution</dt><dd>{project.solution}</dd></div>
+                  <div><dt>Connected systems</dt><dd>{project.integrations}</dd></div>
+                  <div><dt>Documented outcome</dt><dd>{project.outcome}</dd></div>
+                </dl>
+                {project.url && <a className="view-project-link" href={project.url} target="_blank" rel="noreferrer">Visit the live project</a>}
               </div>
-            ))}
-          </div>
-        </div>
+            </article>
+          ))}
+        </div></div>
       </section>
 
-      {/* Call to Action */}
-      <section className="work-cta">
-        <div className="container">
-          <div className="cta-content">
-            <h2 className="cta-title">Ready to Start Your Project?</h2>
-            <p className="cta-description">
-              Let's collaborate to bring your vision to life with our expertise
-              and creativity.
-            </p>
-            <div className="cta-buttons">
-              <button className="btn-primary">Get Started Today</button>
-              <button className="btn-secondary">Contact Us</button>
-            </div>
-          </div>
-        </div>
-      </section>
+      <section className="work-proof-note"><div className="container">
+        <p>We only publish results we can support. As projects produce approved measurements and customer stories, this collection will grow with the evidence.</p>
+      </div></section>
+
+      <section className="work-cta"><div className="container"><div className="cta-content">
+        <h2 className="cta-title">What could work better in your business?</h2>
+        <p className="cta-description">Bring us the bottleneck, the disconnected process, or the product idea. We will help you find a practical path forward.</p>
+        <div className="cta-buttons"><button className="btn-primary" onClick={() => navigate("/get-started")}>Start a Conversation</button><button className="btn-secondary" onClick={() => navigate("/services")}>Explore Services</button></div>
+      </div></div></section>
     </div>
   );
 };
