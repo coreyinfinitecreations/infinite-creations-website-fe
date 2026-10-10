@@ -17,15 +17,16 @@ const AboutSection = () => {
       <div className="about-container">
         <div className="about-content">
           <div className="about-text">
-            <span className="about-badge">Technology that earns its keep</span>
+            <span className="about-badge">Your digital systems and automation partner</span>
             <h2 className="about-title">
-              Connect the work. Automate the repeatable. Build what is missing.
+              Capture more opportunities. Simplify the work. Support your growth.
             </h2>
             <p className="about-description">
-              Infinite Creations helps growing businesses replace disconnected
-              tools and manual handoffs with practical technology. We start with
-              the operational problem, then design the right combination of
-              automation, integrations, software, and digital foundations.
+              Infinite Creations helps growing businesses turn everyday
+              challenges into practical digital solutions. We start with your
+              goals, then connect your website, customer follow-up, and business
+              tools so your team can spend less time on manual work and more
+              time serving customers.
             </p>
 
             <div className="about-features">
@@ -35,12 +36,12 @@ const AboutSection = () => {
               </div>
               <div className="feature-item">
                 <div className="feature-icon">📈</div>
-                <span>Give your team cleaner data and faster decisions.</span>
+                <span>Capture inquiries and make follow-up easier for your team.</span>
               </div>
               <div className="feature-item">
                 <div className="feature-icon">🎯</div>
                 <span>
-                  Create better experiences from first click through delivery.
+                  Connect your systems for a smoother customer experience.
                 </span>
               </div>
             </div>
@@ -50,7 +51,7 @@ const AboutSection = () => {
                 See Our Work
               </button>
               <button className="btn-sign-up" onClick={handleSignUp}>
-                Start a Conversation
+                Book a Free Strategy Call
                 <svg
                   className="arrow-icon"
                   width="16"

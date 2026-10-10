@@ -22,18 +22,18 @@ const Hero = () => {
       <div className="hero-content">
         <div className="hero-text">
           <h1 className="hero-title">
-            Make your business work smarter
+            Smarter Systems. Less Manual Work. More Business Growth.
           </h1>
           <p className="hero-subtitle">
-            We build AI automations, connected systems, and custom software
-            that remove busywork, improve customer experiences, and create
-            room to grow.
+            We help growing businesses capture more leads, automate repetitive
+            tasks, and streamline operations through custom websites, AI
+            automation, and integrated business systems.
           </p>
         </div>
 
         <div className="hero-actions">
           <button className="btn-cta-primary" onClick={handleGetStarted}>
-            Talk Through Your Goals
+            Book a Free Strategy Call
           </button>
           <button className="btn-cta-secondary" onClick={handleViewPortfolio}>
             See What We Build
