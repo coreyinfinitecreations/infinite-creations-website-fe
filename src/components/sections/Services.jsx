@@ -9,25 +9,26 @@ const Services = () => {
 
   const services = [
     {
-      title: "Establish Your Digital Foundation",
-      description: "Launch or improve a professional website and connect the essentials without overbuilding.",
+      title: "Attract & Convert",
+      description: "Turn visitors into qualified inquiries with clear messaging, conversion-focused websites, and connected lead capture.",
     },
     {
-      title: "Connect & Automate Your Business",
-      description: "Reduce manual work and make your existing systems operate as one connected flow.",
+      title: "Automate & Streamline",
+      description: "Reduce repetitive administrative work with AI-powered workflows, automated follow-ups, and practical business automation.",
     },
     {
-      title: "Build a Custom Solution",
-      description: "Create the portal, product, or operational tool your business cannot buy off the shelf.",
+      title: "Connect & Grow",
+      description: "Connect your CRM, scheduling, and operational tools with integrated software systems that simplify operations and support growth.",
     },
   ];
 
   return (
     <section id="services" className="services">
-      <h3>Where Should We Start?</h3>
+      <h3>Better Systems. Meaningful Business Results.</h3>
       <p className="services-teaser">
-        Start with the smallest solution that can create a meaningful result.
-        We can support it, connect it, and improve it as your business grows.
+        Start with the result your business needs: more qualified inquiries,
+        less manual work, or smoother operations. We build the systems to help
+        you get there and improve them as your business grows.
       </p>
       <div className="service-grid">
         {services.map((service, index) => (
