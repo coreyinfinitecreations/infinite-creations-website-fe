@@ -207,6 +207,31 @@
   color: #555;
 }
 
+/* Website purchase options */
+.website-options {
+  margin-top: 70px;
+}
+
+.website-options-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 30px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.website-plan-details {
+  max-width: 900px;
+  margin: 24px auto 0;
+  color: #555;
+  font-size: 1rem;
+  line-height: 1.7;
+}
+
+.website-plan-details p + p {
+  margin-top: 16px;
+}
+
 /* Website projects */
 .services-projects {
   padding: 80px 0;
@@ -343,7 +368,8 @@
 
   .plans-grid,
   .projects-grid,
-  .ongoing-grid {
+  .ongoing-grid,
+  .website-options-grid {
     grid-template-columns: 1fr;
   }
 

@@ -6,7 +6,7 @@ const paths = [
   {
     name: "Establish Your Digital Foundation",
     price: "From $1,500",
-    unit: "or $175/mo for 12 months",
+    unit: "website project • monthly plan available",
     tagline: "Launch a professional customer experience without paying for technology you do not need.",
     features: ["Focused 3–5 page website", "AI-assisted build with professional UI/UX refinement", "Foundational SEO, analytics, and lead capture", "Mobile, accessibility, performance, and launch QA"],
   },
@@ -23,6 +23,25 @@ const paths = [
     unit: "delivered in practical phases",
     tagline: "Create the portal, internal tool, or digital product your business cannot buy off the shelf.",
     features: ["Product strategy and experience design", "Web applications and customer portals", "Internal operations tools", "Iterative launch and ongoing improvement"],
+  },
+];
+
+const websiteOptions = [
+  {
+    name: "Website Project",
+    price: "From $1,500",
+    unit: "upfront project investment",
+    tagline: "A focused website build for businesses that prefer to invest upfront and choose ongoing support separately.",
+    features: ["Professional 3–5 page website", "Foundational SEO, analytics, and lead capture", "Mobile, accessibility, performance, and launch QA", "Optional Care & Optimization after launch"],
+    action: "Discuss a Website Project",
+  },
+  {
+    name: "Managed Website Plan",
+    price: "Custom monthly pricing",
+    unit: "website build and ongoing care in one plan",
+    tagline: "Website as a Service: a professional website with a predictable monthly cost and a partner handling the upkeep.",
+    features: ["Professional 3–5 page website build", "Hosting, updates, backups, and monitoring", "Foundational SEO, analytics, and lead capture", "Up to one hour of content edits per month", "Ongoing technical support and maintenance"],
+    action: "Discuss a Managed Website",
   },
 ];
 
@@ -71,6 +90,25 @@ const Services = () => {
               </div>
             ))}
           </div>
+          <div className="website-options" aria-labelledby="website-options-title">
+            <h2 id="website-options-title" className="section-title">Two Ways to Launch Your Website</h2>
+            <p className="section-subtitle">Choose an upfront website project or a managed monthly plan within your digital foundation.</p>
+            <div className="website-options-grid">
+              {websiteOptions.map((option) => (
+                <div key={option.name} className="plan-card">
+                  <h3 className="plan-name">{option.name}</h3>
+                  <p className="plan-price"><span className="plan-price-value">{option.price}</span><span className="plan-unit">{option.unit}</span></p>
+                  <p className="plan-tagline">{option.tagline}</p>
+                  <ul className="plan-features">{option.features.map((feature) => <li key={feature}>{feature}</li>)}</ul>
+                  <button className="btn-plan-secondary" onClick={() => navigate("/get-started")}>{option.action}</button>
+                </div>
+              ))}
+            </div>
+            <div className="website-plan-details">
+              <p><strong>A clear scope from the start.</strong> The managed plan covers 3–5 pages and up to one hour of edits to existing content each month. Unused edit time does not roll over. New pages, larger redesigns, custom features, and marketing campaigns are quoted separately.</p>
+              <p><strong>Know the terms before you commit.</strong> Your proposal will specify the monthly price, any setup fee, minimum term, website ownership, and cancellation or transfer arrangements before work begins. The monthly plan includes both the build and ongoing care.</p>
+            </div>
+          </div>
           <div className="plans-terms"><p><strong>Pricing is a starting point.</strong> We scope around the problem, the systems involved, and the value of solving it. You will receive a clear recommendation before work begins.</p></div>
         </div>
       </section>
@@ -78,7 +116,7 @@ const Services = () => {
       <section className="services-projects">
         <div className="container">
           <h2 className="section-title">Keep Improving After Launch</h2>
-          <p className="section-subtitle">Growth and care support every path. Add ongoing help when the business needs consistent attention, measurement, and improvement.</p>
+          <p className="section-subtitle">Growth and care support every path. Add ongoing help when the business needs consistent attention, measurement, and improvement. Managed Website Plans already include website care; Digital Growth can be added separately.</p>
           <div className="ongoing-grid">
             {ongoingServices.map((service) => (
               <div key={service.name} className="ongoing-card">
