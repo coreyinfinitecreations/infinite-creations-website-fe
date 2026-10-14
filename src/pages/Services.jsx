@@ -37,10 +37,10 @@ const websiteOptions = [
   },
   {
     name: "Managed Website Plan",
-    price: "Custom monthly pricing",
-    unit: "website build and ongoing care in one plan",
+    price: "From $450/mo",
+    unit: "12-month minimum • build and website care included",
     tagline: "Website as a Service: a professional website with a predictable monthly cost and a partner handling the upkeep.",
-    features: ["Professional 3–5 page website build", "Hosting, updates, backups, and monitoring", "Foundational SEO, analytics, and lead capture", "Up to one hour of content edits per month", "Ongoing technical support and maintenance"],
+    features: ["Professional 3–5 page website build", "Hosting, updates, backups, and monitoring", "Foundational SEO, analytics, and lead capture", "Up to one hour of content edits per month", "Website Care & Optimization included", "Technical support and routine performance improvements"],
     action: "Discuss a Managed Website",
   },
 ];
@@ -106,7 +106,7 @@ const Services = () => {
             </div>
             <div className="website-plan-details">
               <p><strong>A clear scope from the start.</strong> The managed plan covers 3–5 pages and up to one hour of edits to existing content each month. Unused edit time does not roll over. New pages, larger redesigns, custom features, and marketing campaigns are quoted separately.</p>
-              <p><strong>Know the terms before you commit.</strong> Your proposal will specify the monthly price, any setup fee, minimum term, website ownership, and cancellation or transfer arrangements before work begins. The monthly plan includes both the build and ongoing care.</p>
+              <p><strong>Know the terms before you commit.</strong> Managed Website Plans start at $450/month with a 12-month minimum. Your proposal will confirm the final monthly price, any setup fee, website ownership, and cancellation or transfer arrangements before work begins. All website services in Care & Optimization are included; no separate website care plan is required.</p>
             </div>
           </div>
           <div className="plans-terms"><p><strong>Pricing is a starting point.</strong> We scope around the problem, the systems involved, and the value of solving it. You will receive a clear recommendation before work begins.</p></div>
