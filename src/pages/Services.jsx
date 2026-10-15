@@ -66,15 +66,15 @@ const Services = () => {
     <div className="services-page">
       <section className="services-hero">
         <div className="container"><div className="hero-content">
-          <h1 className="hero-title">Technology built around how your business works</h1>
-          <p className="hero-description">We find the friction slowing your team down, then build the automation, connected systems, software, and digital foundation that moves the business forward.</p>
+          <h1 className="hero-title">Digital Solutions That Help Your Business Grow</h1>
+          <p className="hero-description">From websites and marketing to automation, connected workflows, and custom software, we help you attract more customers and simplify the work behind the scenes.</p>
           <button className="btn-cta-primary" onClick={() => navigate("/get-started")}>Start with a Conversation</button>
         </div></div>
       </section>
 
       <section className="services-plans">
         <div className="container">
-          <h2 className="section-title">Where Should We Start?</h2>
+          <h2 className="section-title">Choose the Right Solution for Your Business</h2>
           <p className="section-subtitle">Choose the path closest to where your business is today. We will recommend the smallest solution that can produce a meaningful result.</p>
           <div className="plans-grid">
             {paths.map((path) => (
@@ -115,7 +115,7 @@ const Services = () => {
 
       <section className="services-projects">
         <div className="container">
-          <h2 className="section-title">Keep Improving After Launch</h2>
+          <h2 className="section-title">Grow With Ongoing Support</h2>
           <p className="section-subtitle">Growth and care support every path. Add ongoing help when the business needs consistent attention, measurement, and improvement. Managed Website Plans already include website care; Digital Growth can be added separately.</p>
           <div className="ongoing-grid">
             {ongoingServices.map((service) => (
@@ -134,7 +134,7 @@ const Services = () => {
 
       <section className="services-process">
         <div className="container">
-          <h2 className="section-title">A Practical Path from Problem to Progress</h2>
+          <h2 className="section-title">Three Steps to a Smarter Business</h2>
           <p className="section-subtitle">Clear decisions, useful releases, and technology your team can confidently own.</p>
           <div className="projects-grid">
             {[
@@ -147,7 +147,7 @@ const Services = () => {
       </section>
 
       <section className="services-cta"><div className="container"><div className="cta-content">
-        <h2 className="cta-title">Not sure which path fits?</h2>
+        <h2 className="cta-title">You Run Your Business. We Make the Technology Work for You.</h2>
         <p className="cta-description">Start with a conversation. We will recommend the smallest solution that can produce a meaningful result—without forcing a tool or oversized project.</p>
         <button className="btn-cta-primary" onClick={() => navigate("/get-started")}>Find the Right Starting Point</button>
       </div></div></section>
