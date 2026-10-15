@@ -17,31 +17,27 @@ const AboutSection = () => {
       <div className="about-container">
         <div className="about-content">
           <div className="about-text">
-            <span className="about-badge">Your digital systems and automation partner</span>
+            <span className="about-badge">Your partner for digital growth and automation</span>
             <h2 className="about-title">
-              Capture more opportunities. Simplify the work. Support your growth.
+              Running a business is hard enough. Your technology shouldn't make it harder.
             </h2>
             <p className="about-description">
-              Infinite Creations helps growing businesses turn everyday
-              challenges into practical digital solutions. We start with your
-              goals, then connect your website, customer follow-up, and business
-              tools so your team can spend less time on manual work and more
-              time serving customers.
+              Missed inquiries, manual tasks, disconnected tools, and an outdated website can cost you valuable time and opportunities. We listen first, then bring together websites, marketing, automation, and custom systems to help you focus on your customers.
             </p>
 
             <div className="about-features">
               <div className="feature-item">
                 <div className="feature-icon">⚙️</div>
-                <span>Reduce repetitive work and costly process gaps.</span>
+                <span>Attract customers with a stronger online presence.</span>
               </div>
               <div className="feature-item">
                 <div className="feature-icon">📈</div>
-                <span>Capture inquiries and make follow-up easier for your team.</span>
+                <span>Automate follow-ups and time-consuming tasks.</span>
               </div>
               <div className="feature-item">
                 <div className="feature-icon">🎯</div>
                 <span>
-                  Connect your systems for a smoother customer experience.
+                  Connect the tools you rely on as you grow.
                 </span>
               </div>
             </div>
