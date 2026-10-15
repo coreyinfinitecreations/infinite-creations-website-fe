@@ -10,7 +10,7 @@ const Hero = () => {
   };
 
   const handleViewPortfolio = () => {
-    navigate("/portfolio");
+    navigate("/services");
   };
 
   return (
@@ -22,12 +22,10 @@ const Hero = () => {
       <div className="hero-content">
         <div className="hero-text">
           <h1 className="hero-title">
-            Smarter Systems. Less Manual Work. More Business Growth.
+            Grow Your Business. Simplify Everything Else.
           </h1>
           <p className="hero-subtitle">
-            We help growing businesses capture more leads, automate repetitive
-            tasks, and streamline operations through custom websites, AI
-            automation, and integrated business systems.
+            We help small and growing businesses attract customers, automate everyday tasks, and work more efficiently with websites, marketing, connected workflows, and smart digital solutions.
           </p>
         </div>
 
@@ -36,7 +34,7 @@ const Hero = () => {
             Book a Free Strategy Call
           </button>
           <button className="btn-cta-secondary" onClick={handleViewPortfolio}>
-            See What We Build
+            Explore Our Solutions
           </button>
         </div>
       </div>
