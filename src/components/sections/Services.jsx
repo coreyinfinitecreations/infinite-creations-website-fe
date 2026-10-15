@@ -9,26 +9,28 @@ const Services = () => {
 
   const services = [
     {
-      title: "Attract & Convert",
-      description: "Turn visitors into qualified inquiries with clear messaging, conversion-focused websites, and connected lead capture.",
+      title: "Websites & Digital Experiences",
+      description: "Build trust and make it easier for customers to find, contact, book, or buy from you with professional websites, e-commerce, and customer portals.",
     },
     {
-      title: "Automate & Streamline",
-      description: "Reduce repetitive administrative work with AI-powered workflows, automated follow-ups, and practical business automation.",
+      title: "Automation & Workflows",
+      description: "Save time by connecting your CRM, scheduling, and business tools with smart intake, follow-ups, software integrations, and practical AI workflows.",
     },
     {
-      title: "Connect & Grow",
-      description: "Connect your CRM, scheduling, and operational tools with integrated software systems that simplify operations and support growth.",
+      title: "Marketing & Customer Growth",
+      description: "Reach the right customers and convert more inquiries with local SEO, landing pages, email marketing, and lead-nurturing campaigns.",
+    },
+    {
+      title: "Business Systems & Support",
+      description: "Keep operations running smoothly with custom dashboards, internal tools, website care, hosting, maintenance, and ongoing improvements.",
     },
   ];
 
   return (
     <section id="services" className="services">
-      <h3>Better Systems. Meaningful Business Results.</h3>
+      <h3>More Customers. Less Busywork. Better Business.</h3>
       <p className="services-teaser">
-        Start with the result your business needs: more qualified inquiries,
-        less manual work, or smoother operations. We build the systems to help
-        you get there and improve them as your business grows.
+        You shouldn't need separate partners for every digital challenge. From your website and marketing to your daily workflows, we connect the pieces that help your business grow.
       </p>
       <div className="service-grid">
         {services.map((service, index) => (
